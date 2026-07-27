@@ -422,6 +422,7 @@
   flex-grow: 1;
   height: 100%;
   background-color: #f1f5f9;
+  min-width: 0;
 }
 
 /* Success Pop-up Modal */
@@ -998,4 +999,271 @@
   color: #64748b;
   margin-top: 0.35rem;
   white-space: nowrap;
+}
+
+/* Sidebar Backdrop and Responsive Styles for Mobile Screens */
+.sidebar-backdrop {
+  position: fixed;
+  inset: 0;
+  background: rgba(15, 23, 42, 0.4);
+  backdrop-filter: blur(2px);
+  z-index: 99;
+}
+
+.sidebar-close-btn {
+  display: none;
+}
+
+@media (max-width: 768px) {
+  .dashboard-sidebar {
+    position: fixed;
+    left: 0;
+    top: 0;
+    bottom: 0;
+    z-index: 100;
+    transform: translateX(-100%);
+    transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+
+  .dashboard-sidebar.open {
+    transform: translateX(0);
+  }
+
+  .sidebar-close-btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: rgba(255, 255, 255, 0.08);
+    border: none;
+    color: #ffffff;
+    font-size: 1.5rem;
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    cursor: pointer;
+    position: absolute;
+    right: 1rem;
+    top: 1rem;
+  }
+
+  .top-header {
+    padding: 0.75rem 0.75rem;
+    gap: 0.75rem;
+  }
+
+  .header-left {
+    flex: 1;
+    min-width: 0;
+    gap: 0.5rem;
+  }
+
+  .header-title-area {
+    min-width: 0;
+  }
+
+  .header-title-area h2 {
+    white-space: normal;
+    font-size: 0.95rem;
+  }
+
+  .header-title-area p {
+    white-space: normal;
+    font-size: 0.625rem;
+    line-height: 1.2;
+    margin-top: 0.1rem;
+  }
+
+  .header-middle {
+    display: none; /* Hide search input on mobile screen to prevent squeezing */
+  }
+
+  .header-right {
+    gap: 0.5rem;
+  }
+
+  .header-meta-date {
+    display: none; /* Hide date on small screen */
+  }
+
+  .profile-meta {
+    display: none; /* Hide name/role on mobile, just show avatar */
+  }
+
+  .dashboard-body {
+    padding: 1rem;
+  }
+
+  .metrics-row {
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+  }
+
+  .metric-card {
+    padding: 1rem 0.75rem;
+    border-radius: 12px;
+  }
+
+  .metric-value {
+    font-size: 1.15rem;
+  }
+
+  .metric-label {
+    font-size: 0.65rem;
+  }
+}
+
+/* HR Employee Management Styles */
+.hr-section-card {
+  background-color: #ffffff;
+  border-radius: 16px;
+  border: 1px solid #e2e8f0;
+  box-shadow: 0 4px 6px -1px rgba(15, 23, 42, 0.02), 0 2px 4px -1px rgba(15, 23, 42, 0.02);
+  padding: 1.5rem;
+  margin-top: 1rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+  transition: all 0.3s ease;
+}
+
+.hr-section-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom: 1.5px solid #f1f5f9;
+  padding-bottom: 1rem;
+}
+
+.hr-section-header h3 {
+  font-size: 1.15rem;
+  font-weight: 700;
+  color: #0f172a;
+  margin: 0;
+}
+
+.add-hr-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  background-color: #2563eb;
+  color: #ffffff;
+  border: none;
+  border-radius: 8px;
+  padding: 0.6rem 1.2rem;
+  font-size: 0.875rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  box-shadow: 0 4px 10px rgba(37, 99, 235, 0.15);
+}
+
+.add-hr-btn:hover {
+  background-color: #1d4ed8;
+  transform: translateY(-1px);
+  box-shadow: 0 6px 15px rgba(37, 99, 235, 0.25);
+}
+
+.add-hr-btn:active {
+  transform: translateY(0);
+}
+
+.hr-form-container {
+  background-color: #f8fafc;
+  border: 1px dashed #cbd5e1;
+  border-radius: 12px;
+  padding: 1.5rem;
+  animation: slideDown 0.25s ease-out;
+}
+
+@keyframes slideDown {
+  from {
+    opacity: 0;
+    transform: translateY(-10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.hr-form-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+  gap: 1.25rem;
+  margin-bottom: 1.25rem;
+}
+
+.hr-form-actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: 0.75rem;
+}
+
+.hr-input {
+  width: 100%;
+  padding: 0.65rem 0.85rem;
+  border-radius: 8px;
+  border: 1.5px solid #cbd5e1;
+  background-color: #ffffff;
+  color: #0f172a;
+  font-size: 0.875rem;
+  outline: none;
+  transition: all 0.2s ease;
+}
+
+.hr-input:focus {
+  border-color: #2563eb;
+  box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.08);
+}
+
+.hr-table-container {
+  width: 100%;
+  overflow-x: auto;
+}
+
+.hr-table {
+  width: 100%;
+  border-collapse: collapse;
+  text-align: left;
+  font-size: 0.875rem;
+}
+
+.hr-table th {
+  background-color: #f8fafc;
+  color: #475569;
+  font-weight: 600;
+  padding: 0.75rem 1rem;
+  border-bottom: 1.5px solid #e2e8f0;
+}
+
+.hr-table td {
+  padding: 0.85rem 1rem;
+  border-bottom: 1px solid #f1f5f9;
+  color: #0f172a;
+}
+
+.no-data-cell {
+  text-align: center;
+  color: #64748b;
+  padding: 2.5rem 1rem !important;
+  font-style: italic;
+  background-color: #fafbfd;
+}
+
+.delete-hr-btn {
+  background-color: #fef2f2;
+  color: #ef4444;
+  border: 1px solid #fee2e2;
+  padding: 0.35rem 0.75rem;
+  border-radius: 6px;
+  font-size: 0.75rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.delete-hr-btn:hover {
+  background-color: #fee2e2;
+  color: #b91c1c;
 }

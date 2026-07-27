@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from 'react'
 import logo from '../assets/company_portol_logo.png'
 import { supabase } from '../supabaseClient'
-import AdminDashboard from './admin_dashboard.jsx'
 import './admin_login.css'
 
 
@@ -12,9 +11,7 @@ function AdminLogin() {
   const [loading, setLoading] = useState(false)
   const [errorMessage, setErrorMessage] = useState('')
   const [successMessage, setSuccessMessage] = useState('')
-  const [isLoggedIn, setIsLoggedIn] = useState(() => {
-    return localStorage.getItem('admin_isLoggedIn') === 'true'
-  })
+  const isLoggedIn = localStorage.getItem('admin_isLoggedIn') === 'true'
   const [showSuccessModal, setShowSuccessModal] = useState(false)
 
   // Ticking clock effect
@@ -95,9 +92,10 @@ function AdminLogin() {
     }
   }
 
-  // Render Sidebar Dashboard if logged in
+  // Redirect to Sidebar Dashboard if logged in
   if (isLoggedIn) {
-    return <AdminDashboard adminEmail={localStorage.getItem('admin_login_email') || email} />
+    window.location.href = '/admin_dashboard'
+    return null
   }
 
   return (
@@ -194,9 +192,9 @@ function AdminLogin() {
               className="success-modal-btn"
               onClick={() => {
                 setShowSuccessModal(false)
-                setIsLoggedIn(true)
                 localStorage.setItem('admin_isLoggedIn', 'true')
                 localStorage.setItem('admin_login_email', email)
+                window.location.href = '/admin_dashboard'
               }}
             >
               OK
